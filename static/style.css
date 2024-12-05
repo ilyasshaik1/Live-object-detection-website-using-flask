@@ -1,0 +1,81 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    background-image:url('C:\Users\ilyas\Downloads\people working in cyber theme.png');
+}
+
+.home-container, .container {
+    text-align: center;
+    padding: 20px;
+    margin: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align video and object list at the top */
+}
+
+.video-container {
+    max-width: 800px;
+    flex: 2; /* Allow it to take up more space */
+}
+
+.object-list-container {
+    max-width: 200px;
+    margin-left: 20px; /* Space between video and object list */
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 8px;
+    flex: 1; /* Allow it to take up less space */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

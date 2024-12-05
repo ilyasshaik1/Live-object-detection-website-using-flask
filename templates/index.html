@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Video Object Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="container">
+        <h1>Live Video Object Detection</h1>
+        <div class="button-container">
+            <button class="btn" onclick="startVideo()">Start Video</button>
+            <button class="btn" onclick="stopVideo()">Stop Video</button>
+        </div>
+        <div class="content">
+            <div class="video-container">
+                <img id="video" src="{{ url_for('video_feed') }}" alt="Live video feed" />
+            </div>
+            <div class="object-list-container">
+                <h2>Detected Objects</h2>
+                <ul id="object-list" aria-live="polite"></ul>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function startVideo() {
+            fetch('/start').then(response => {
+                if (!response.ok) throw new Error('Failed to start video');
+                document.getElementById('video').src = '/video_feed';
+                updateObjectList();
+            }).catch(error => console.error(error));
+        }
+
+        function stopVideo() {
+            fetch('/stop').then(response => {
+                if (!response.ok) throw new Error('Failed to stop video');
+                document.getElementById('video').src = '';
+                document.getElementById('object-list').innerHTML = '';
+            }).catch(error => console.error(error));
+        }
+
+        function updateObjectList() {
+            fetch('/objects').then(response => {
+                if (!response.ok) throw new Error('Failed to fetch objects');
+                return response.json();
+            }).then(data => {
+                const objectList = document.getElementById('object-list');
+                objectList.innerHTML = '';
+                data.objects.forEach(obj => {
+                    const li = document.createElement('li');
+                    li.textContent = obj;
+                    objectList.appendChild(li);
+                });
+            }).catch(error => console.error(error));
+
+            if (document.getElementById('video').src) {
+                setTimeout(updateObjectList, 1000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+/your_project_directory
+│
+├── app.py
+├── yolov3-tiny.weights
+├── yolov3-tiny.cfg
+├── coco.names
+│
+├── templates
+│   ├── home.html
+│   └── index.html
+│
+└── static
+    └── style.css
